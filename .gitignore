@@ -6,6 +6,7 @@
 !/scripts/
 !/visualize-my-task/
 !/docs/releases/
+!/docs/images/
 !/visualize-my-task/agents/
 !/visualize-my-task/assets/
 !/visualize-my-task/examples/
@@ -34,6 +35,11 @@
 !/README.md
 !/SECURITY.md
 !/docs/releases/1.0.0.md
+!/docs/images/overview.png
+!/docs/images/task-details.png
+!/docs/images/workstreams.png
+!/docs/images/spec-reference.png
+!/docs/images/mobile.png
 !/package.json
 !/scripts/package-release.py
 !/scripts/package-release.test.py
