@@ -33,6 +33,7 @@
 
 !/.gitignore
 !/README.md
+!/README.en.md
 !/SECURITY.md
 !/docs/releases/1.0.0.md
 !/docs/images/overview.png
@@ -40,6 +41,7 @@
 !/docs/images/workstreams.png
 !/docs/images/spec-reference.png
 !/docs/images/mobile.png
+!/docs/images/logo.png
 !/package.json
 !/scripts/package-release.py
 !/scripts/package-release.test.py

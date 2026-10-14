@@ -1,4 +1,12 @@
-# Visualize My Task
+<p align="center">
+  <img src="docs/images/logo.png" alt="Visualize My Task 标志：连接任务节点的路线" width="112">
+</p>
+
+<h1 align="center">Visualize My Task</h1>
+
+<p align="center"><strong>“See the plan. Know your next move.”</strong><br>看清计划，走好下一步。</p>
+
+<p align="center"><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
 
 **把 Markdown 开发计划，变成一张看得清的行动地图。**
 
