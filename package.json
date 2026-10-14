@@ -1,0 +1,19 @@
+{
+  "name": "visualize-my-task",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node visualize-my-task/scripts/board.mjs --root visualize-my-task/examples/cases/01-structured --tasks tables --title \"Visualize My Task\" --port 0",
+    "check": "node visualize-my-task/scripts/board.mjs --root visualize-my-task/examples/cases/01-structured --tasks tables --check",
+    "preview": "node visualize-my-task/scripts/board.mjs --root visualize-my-task/examples/cases/01-structured --tasks tables --title \"Visualize My Task\" --port 0",
+    "test": "node --test visualize-my-task/scripts/*.test.mjs",
+    "test:cases": "node --test visualize-my-task/scripts/scenarios.test.mjs",
+    "preview:new": "node visualize-my-task/scripts/board.mjs --root visualize-my-task/examples/cases/05-new-project/updated --port 0",
+    "package": "python3 scripts/package-release.py",
+    "test:package": "python3 scripts/package-release.test.py"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "version": "1.0.0"
+}

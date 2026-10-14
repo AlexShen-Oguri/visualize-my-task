@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "synthetic": true,
+  "rootBase": "skill",
+  "cases": [
+    {
+      "id": "01-structured",
+      "label": "已有分轮计划 · 必要与可并行追加分支",
+      "kind": "existing",
+      "root": "examples/cases/01-structured",
+      "sources": {
+        "planPaths": [
+          "PLAN.md"
+        ],
+        "relationPaths": [
+          "BOARD.md"
+        ],
+        "changelogPaths": []
+      },
+      "expected": {
+        "taskCount": 5,
+        "planningState": "documented",
+        "currentId": "ADD-MAT",
+        "nextId": "R2"
+      }
+    },
+    {
+      "id": "02-adhoc",
+      "label": "已有零散计划 · 能力目录与近期步骤",
+      "kind": "existing",
+      "root": "examples/cases/02-adhoc",
+      "sources": {
+        "planPaths": [
+          "PLAN.md"
+        ],
+        "relationPaths": [],
+        "changelogPaths": []
+      },
+      "expected": {
+        "taskCount": 5,
+        "planningState": "documented",
+        "currentId": "NOW-01",
+        "nextId": "NOW-02"
+      }
+    },
+    {
+      "id": "03-no-plan",
+      "label": "已有无计划项目 · 仅有历史",
+      "kind": "existing",
+      "root": "examples/cases/03-no-plan",
+      "sources": {
+        "planPaths": [],
+        "relationPaths": [],
+        "changelogPaths": [
+          "CHANGELOG.md"
+        ]
+      },
+      "expected": {
+        "taskCount": 0,
+        "historyCount": 2,
+        "planningState": "history-only",
+        "currentId": null,
+        "nextId": null
+      },
+      "emptyRoot": "examples/cases/03-no-plan/no-records"
+    },
+    {
+      "id": "04-workstreams",
+      "label": "已有多类工作 · 开发、安全与发布",
+      "kind": "existing",
+      "root": "examples/cases/04-workstreams",
+      "sources": {
+        "planPaths": [
+          "PLAN.md"
+        ],
+        "relationPaths": [],
+        "changelogPaths": [
+          "CHANGELOG.md"
+        ]
+      },
+      "expected": {
+        "taskCount": 4,
+        "planningState": "documented",
+        "currentId": "SEC-01",
+        "nextId": "SEC-02",
+        "scope": "v0.6.0-rc1"
+      }
+    },
+    {
+      "id": "05-new-project",
+      "label": "新项目 · 从首日记录计划与追加改动",
+      "kind": "new",
+      "root": "examples/cases/05-new-project/updated",
+      "initialRoot": "examples/cases/05-new-project/initial",
+      "updatedRoot": "examples/cases/05-new-project/updated",
+      "sources": {
+        "planPaths": [
+          "plan.md"
+        ],
+        "relationPaths": [],
+        "changelogPaths": []
+      },
+      "expected": {
+        "taskCount": 4,
+        "initialTaskCount": 3,
+        "planningState": "documented",
+        "currentId": "P-02",
+        "nextId": "ADD-01"
+      }
+    },
+    {
+      "id": "06-source-layout",
+      "label": "已有项目 · 自定义规格、任务与历史来源",
+      "kind": "existing",
+      "root": "examples/cases/06-source-layout",
+      "sources": {
+        "planPaths": [
+          "spec/implementation.md"
+        ],
+        "specPaths": [
+          "design/requirements.md"
+        ],
+        "relationPaths": [],
+        "changelogPaths": [
+          "notes/history.md"
+        ]
+      },
+      "expected": {
+        "taskCount": 3,
+        "specificationSourceCount": 1,
+        "historyCount": 1,
+        "planningState": "documented",
+        "currentId": "SRC-02",
+        "nextId": "SRC-03"
+      },
+      "specOnlyRoot": "examples/cases/06-source-layout/spec-only",
+      "specOnlySources": {
+        "planPaths": [],
+        "specPaths": [
+          "docs/product-brief.md"
+        ],
+        "relationPaths": [],
+        "changelogPaths": []
+      }
+    }
+  ]
+}

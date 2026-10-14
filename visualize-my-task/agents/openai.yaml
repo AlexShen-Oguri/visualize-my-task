@@ -1,0 +1,4 @@
+interface:
+  display_name: "Visualize My Task"
+  short_description: "Live development progress from existing Markdown documents"
+  default_prompt: "Use $visualize-my-task to open a live development dashboard using this project's actual planning sources, including task plans, specs and changelogs."
