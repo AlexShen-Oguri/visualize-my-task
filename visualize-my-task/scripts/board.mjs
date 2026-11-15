@@ -12,7 +12,7 @@ const indexPath = fileURLToPath(new URL('../assets/index.html', import.meta.url)
 const assets = new Map([
   ['/assets/mission-model.mjs', { path: fileURLToPath(new URL('../assets/mission-model.mjs', import.meta.url)), type: 'text/javascript; charset=utf-8' }],
   ['/assets/i18n.mjs', { path: fileURLToPath(new URL('../assets/i18n.mjs', import.meta.url)), type: 'text/javascript; charset=utf-8' }],
-  ['/assets/terrain.png', { path: fileURLToPath(new URL('../assets/terrain.png', import.meta.url)), type: 'image/png' }],
+  ['/assets/terrain.jpg', { path: fileURLToPath(new URL('../assets/terrain.jpg', import.meta.url)), type: 'image/jpeg' }],
 ]);
 const maxBytes = 2_000_000;
 const headers = {
