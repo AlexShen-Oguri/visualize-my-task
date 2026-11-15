@@ -48,6 +48,8 @@ All five screenshots on this page are actual browser captures of the current ver
 
 `P-01` is implemented and has passed automated verification. User acceptance and delivery remain separate records. Passing tests or pushing code does not automatically mark the task as accepted.
 
+The four marks at the top right of each task plate stand for development, verification, acceptance, and delivery, in that order, so the map shows where a task has stopped before you open its details.
+
 ### Release work retains its prerequisites across maps
 
 ![A release task showing prerequisites from development and security review, plus its candidate version scope](docs/images/workstreams.png)

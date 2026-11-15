@@ -65,7 +65,7 @@ class ReleasePackageTests(unittest.TestCase):
         self.assertFalse(self.archive.exists(), 'The packager wrote an archive before rejecting a symlink.')
 
     def test_missing_allowlisted_file_is_rejected_before_writing_archive(self):
-        (self.checkout / 'visualize-my-task/assets/terrain.png').unlink()
+        (self.checkout / 'visualize-my-task/assets/terrain.jpg').unlink()
         result = self.package()
         self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertFalse(self.archive.exists(), 'The packager wrote an archive before rejecting a missing file.')
