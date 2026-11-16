@@ -96,7 +96,7 @@ $visualize-my-task 从第一天为这个新项目建立并维护计划。
 
 需要 **Node.js 20+** 和本机浏览器。无需安装第三方运行依赖或执行构建。
 
-1. 从 [v1.1.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0) 下载 `visualize-my-task-1.1.0.zip`；私有仓库需要访问权限。
+1. 从 [v1.1.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0) 下载 `visualize-my-task-1.1.0.zip`。
 2. 解压，将其中完整的 `visualize-my-task/` 放入 `~/.codex/skills/`。已有同名安装时先保留副本。
 3. 在目标项目调用 `$visualize-my-task`。
 

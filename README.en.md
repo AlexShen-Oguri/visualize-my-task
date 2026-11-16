@@ -96,7 +96,7 @@ $visualize-my-task Establish and maintain a plan for this new project from day o
 
 Requires **Node.js 20+** and a local browser. There are no third-party runtime dependencies to install and no build step.
 
-1. Download `visualize-my-task-1.1.0.zip` from the [v1.1.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0). This private repository requires access permission.
+1. Download `visualize-my-task-1.1.0.zip` from the [v1.1.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0).
 2. Extract it and place the complete `visualize-my-task/` folder inside `~/.codex/skills/`. Keep a backup first if that folder already exists.
 3. Invoke `$visualize-my-task` in your target project.
 
