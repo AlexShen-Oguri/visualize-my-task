@@ -2,7 +2,7 @@
 name: visualize-my-task
 description: Use when a user wants a local development dashboard from Markdown plans, specs or changelogs (开发进度看板、实时开发排程), needs added tasks attached to a workflow, or adopts the board from a new project's start. Sources follow the project's actual planning locations. Not for product analytics or dashboards sourced only from GitHub Issues.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Visualize My Task

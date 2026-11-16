@@ -14,7 +14,7 @@
 
 `Codex Skill` · `中文 / English` · `本机运行` · `零第三方运行依赖`
 
-[下载安装](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.0.0) · [快速开始](#快速开始) · [实际运行图](#实际运行图) · [案例说明](visualize-my-task/examples/cases/README.md)
+[下载安装](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0) · [快速开始](#快速开始) · [实际运行图](#实际运行图) · [案例说明](visualize-my-task/examples/cases/README.md)
 
 ![实际运行的行动地图，展示三轮主线、当前追加任务和并行支线](docs/images/overview.png)
 
@@ -96,7 +96,7 @@ $visualize-my-task 从第一天为这个新项目建立并维护计划。
 
 需要 **Node.js 20+** 和本机浏览器。无需安装第三方运行依赖或执行构建。
 
-1. 从 [v1.0.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.0.0) 下载 `visualize-my-task-1.0.0.zip`；私有仓库需要访问权限。
+1. 从 [v1.1.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0) 下载 `visualize-my-task-1.1.0.zip`；私有仓库需要访问权限。
 2. 解压，将其中完整的 `visualize-my-task/` 放入 `~/.codex/skills/`。已有同名安装时先保留副本。
 3. 在目标项目调用 `$visualize-my-task`。
 
@@ -124,16 +124,16 @@ npm start
 
 ## 验证记录
 
-`v1.0.0` 发布前完成了以下检查。本页截图另以当前运行版本重新拍摄，验证了五个展示场景和桌面／手机视口。
+下表列出每项检查最近一次运行时的版本。`v1.1.0` 重做了界面，重新运行了其中三项；HTTP、输入边界和浏览器安全检查仍是 `v1.0.0` 发布前的记录，本版没有重跑。本页截图以 `v1.1.0` 的界面重新拍摄，覆盖五个展示场景和桌面／手机视口。
 
-| 检查 | 结果 |
-| --- | --- |
-| 自动回归测试 | 101 项通过。 |
-| HTTP、输入边界和浏览器安全检查 | 165 项通过。 |
-| 安装包独立解压 | 101 项测试与 12 组 CLI 案例通过，包含中文和空格路径。 |
-| 打包过滤 | 3 项实际集成测试通过；私人附加文件、符号链接与缺失文件得到相应处理。 |
+| 检查 | 结果 | 运行版本 |
+| --- | --- | --- |
+| 自动回归测试 | 101 项通过。 | `v1.1.0` |
+| HTTP、输入边界和浏览器安全检查 | 165 项通过。 | `v1.0.0` |
+| 安装包独立解压 | 101 项测试与 12 组 CLI 案例通过，包含中文和空格路径。 | `v1.1.0` |
+| 打包过滤 | 3 项实际集成测试通过；私人附加文件、符号链接与缺失文件得到相应处理。 | `v1.1.0` |
 
-这些结果覆盖随包案例和已检查的边界，不代表所有项目格式或所有浏览器均已验证。版本能力见 [发布说明](docs/releases/1.0.0.md)。
+这些结果覆盖随包案例和已检查的边界，不代表所有项目格式或所有浏览器均已验证。本版变化见 [1.1.0 发布说明](docs/releases/1.1.0.md)，首个版本的能力见 [1.0.0 发布说明](docs/releases/1.0.0.md)。
 
 ## 进一步使用
 
