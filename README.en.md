@@ -14,7 +14,7 @@ See what is in progress, what comes next, and what still needs acceptance. Keep 
 
 `Codex Skill` · `Chinese / English` · `Runs locally` · `No third-party runtime dependencies`
 
-[Download](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.0.0) · [Quick start](#quick-start) · [Screenshots](#screenshots) · [Example cases](visualize-my-task/examples/cases/README.md)
+[Download](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0) · [Quick start](#quick-start) · [Screenshots](#screenshots) · [Example cases](visualize-my-task/examples/cases/README.md)
 
 ![An actual task map showing three development rounds, the current added task, and parallel branches](docs/images/overview.png)
 
@@ -96,7 +96,7 @@ $visualize-my-task Establish and maintain a plan for this new project from day o
 
 Requires **Node.js 20+** and a local browser. There are no third-party runtime dependencies to install and no build step.
 
-1. Download `visualize-my-task-1.0.0.zip` from the [v1.0.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.0.0). This private repository requires access permission.
+1. Download `visualize-my-task-1.1.0.zip` from the [v1.1.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0). This private repository requires access permission.
 2. Extract it and place the complete `visualize-my-task/` folder inside `~/.codex/skills/`. Keep a backup first if that folder already exists.
 3. Invoke `$visualize-my-task` in your target project.
 
@@ -124,16 +124,16 @@ The interface can follow the project's Chinese or English language. Task names, 
 
 ## Verification record
 
-The following checks were completed before the `v1.0.0` release. The screenshots on this page were captured separately from the current running version, checking five display scenarios and desktop and mobile viewports.
+The table lists the version each check was last run against. `v1.1.0` rebuilt the interface and reran three of them; the HTTP, input boundary, and browser security checks are still the record from before the `v1.0.0` release and were not rerun for this version. The screenshots on this page were retaken with the `v1.1.0` interface, covering five display scenarios and desktop and mobile viewports.
 
-| Check | Result |
-| --- | --- |
-| Automated regression tests | 101 passed. |
-| HTTP, input boundary, and browser security checks | 165 passed. |
-| Independently extracted installation package | 101 tests and 12 CLI cases passed, including paths with Chinese characters and spaces. |
-| Packaging filters | 3 integration tests passed, covering exclusion of private extra files and rejection of symlinks and missing files. |
+| Check | Result | Run against |
+| --- | --- | --- |
+| Automated regression tests | 101 passed. | `v1.1.0` |
+| HTTP, input boundary, and browser security checks | 165 passed. | `v1.0.0` |
+| Independently extracted installation package | 101 tests and 12 CLI cases passed, including paths with Chinese characters and spaces. | `v1.1.0` |
+| Packaging filters | 3 integration tests passed, covering exclusion of private extra files and rejection of symlinks and missing files. | `v1.1.0` |
 
-These results cover the bundled cases and the boundaries checked; they do not establish compatibility with every project format or browser. See the [release notes](docs/releases/1.0.0.md) for version details.
+These results cover the bundled cases and the boundaries checked; they do not establish compatibility with every project format or browser. See the [1.1.0 release notes](docs/releases/1.1.0.md) for what changed in this version and the [1.0.0 release notes](docs/releases/1.0.0.md) for the original capabilities. Both are written in Chinese.
 
 ## More ways to use it
 
