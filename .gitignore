@@ -35,7 +35,7 @@
 
 !/.gitignore
 !/README.md
-!/README.en.md
+!/README.zh-CN.md
 !/SECURITY.md
 !/docs/releases/1.0.0.md
 !/docs/releases/1.1.0.md
