@@ -12,19 +12,19 @@
 
 See what is in progress, what comes next, and what still needs acceptance. Keep new tasks connected to the original plan as your project grows.
 
-`Codex Skill` · `Chinese / English` · `Runs locally` · `No third-party runtime dependencies`
+`Codex · Claude Code · Cursor` · `Chinese / English` · `Runs locally` · `No third-party runtime dependencies`
 
-[Download](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0) · [Quick start](#quick-start) · [Screenshots](#screenshots) · [Example cases](visualize-my-task/examples/cases/README.md)
+[Download](https://github.com/AlexShen-Oguri/visualize-my-task/releases/latest) · [Quick start](#quick-start) · [Screenshots](#screenshots) · [Example cases](visualize-my-task/examples/cases/README.md)
 
 ![An actual task map showing three development rounds, the current added task, and parallel branches](docs/images/overview.png)
 
-*Actual browser screenshot using a bundled synthetic example. Both added tasks sit between the first and second rounds; only required work blocks the second round. The screenshots on this page show the Chinese interface.*
+*Actual browser screenshot from v1.1.0 using a bundled synthetic example. Both added tasks sit between the first and second rounds; only required work blocks the second round. The screenshots on this page show the Chinese interface.*
 
 ## Keep up as the plan grows
 
-When you develop with AI, plans keep changing: a fix appears between two planned rounds, another check is added, and release work follows. Even after reading the documents, you still need to work out where you are—and whether “implemented,” “tested,” and “accepted” mean the same thing.
+When you develop with AI, plans keep changing: a fix appears between two planned rounds, another check is added, and release work follows. Even after reading the documents, you still need to work out where you are, and whether “implemented,” “tested,” and “accepted” mean the same thing.
 
-Visualize My Task brings those records into one map. Keep using your project's Markdown files. Codex maintains the plan within the development work you have authorized, and the board follows saved changes.
+Visualize My Task brings those records into one map. Keep using your project's Markdown files. Your AI assistant maintains the plan within the development work you have authorized, and the board follows saved changes.
 
 ## What you can see
 
@@ -40,7 +40,7 @@ When the records do not establish a relationship, the board keeps it unknown or 
 
 ## Screenshots
 
-All five screenshots on this page are actual browser captures of the current version, using bundled synthetic cases. They contain no private project records. Click an image to open the full-size version.
+All five screenshots on this page are actual browser captures of v1.1.0, using bundled synthetic cases. They contain no private project records. Click an image to open the full-size version.
 
 ### Implemented and tested can still mean awaiting acceptance
 
@@ -70,35 +70,64 @@ The mobile layout keeps map browsing and task details available, including the c
 
 ## Quick start
 
-After installation, ask Codex from your project:
+After installation, invoke the skill from your target project using your tool's syntax:
 
-```text
-$visualize-my-task Open this project's development board.
-```
+| Tool | How to invoke |
+| --- | --- |
+| Codex | Enter `$visualize-my-task Open this project's development board.` |
+| Claude Code | Enter `/visualize-my-task Open this project's development board.` |
+| Cursor | Type `/` in Agent chat, search for and select `visualize-my-task`, then describe the project board to open. |
 
-1. **Choose the right records.** Codex checks the project's plans, specifications, history, and relationship documents, using their actual locations.
-2. **Open the board.** Browse the current task, next step, added branches, and independent states.
+See the [Codex docs](https://learn.chatgpt.com/docs/build-skills), [Claude Code docs](https://code.claude.com/docs/en/skills), and [Cursor docs](https://cursor.com/docs/skills) for skill discovery and invocation.
+
+1. **Choose the right records.** Your AI assistant checks the project's plans, specifications, history, and relationship documents, using their actual locations.
+2. **Open the board.** Your AI assistant uses the tool's browser panel or local browser, or returns the local URL for you to open. Browse the current task, next step, added branches, and independent states.
 3. **Continue developing.** Maintain the original plan within the work you have authorized. The board checks saved changes in the selected documents every two seconds.
 
-You can also describe your situation directly:
+After selecting the skill, you can also describe your situation directly:
 
 ```text
-$visualize-my-task Show what is in progress in this plan and what comes next.
+Show what is in progress in this plan and what comes next.
 
-$visualize-my-task The added tasks are already recorded in the plan. Organize their relationships from the existing evidence and open the board.
+The added tasks are already recorded in the plan. Organize their relationships from the existing evidence and open the board.
 
-$visualize-my-task Establish and maintain a plan for this new project from day one.
+Establish and maintain a plan for this new project from day one.
 ```
 
-**The local service is read-only.** Codex or a separate helper script maintains documents within the authorized scope. The board service does not listen to conversations, call a model, or change task states for you.
+**The local service is read-only.** Your AI assistant or a separate helper script maintains documents within the authorized scope. The board service does not listen to conversations, call a model, or change task states for you.
 
 ## Installation
 
-Requires **Node.js 20+** and a local browser. There are no third-party runtime dependencies to install and no build step.
+Running the board requires **Node.js 20+** and a local browser. There are no third-party runtime dependencies to install and no build step.
 
-1. Download `visualize-my-task-1.1.0.zip` from the [v1.1.0 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/tag/v1.1.0).
-2. Extract it and place the complete `visualize-my-task/` folder inside `~/.codex/skills/`. Keep a backup first if that folder already exists.
-3. Invoke `$visualize-my-task` in your target project.
+Install for Codex, Claude Code, and Cursor with the [Skills CLI](https://github.com/vercel-labs/skills). The current installer requires **Node.js 22.20+**.
+
+```sh
+npx skills add AlexShen-Oguri/visualize-my-task --skill visualize-my-task -a codex claude-code cursor -g -y
+```
+
+`-g` makes the skill available across projects. Omit it to install into the current project. Keep only the tools you use after `-a`. `-y` skips installation confirmation. All three tools use the same skill source.
+
+Choose the same scope when updating or removing the installation. Run project-level commands from the target project's root.
+
+| Operation | Global installation | Project installation |
+| --- | --- | --- |
+| Update | `npx skills update visualize-my-task -g -y` | `npx skills update visualize-my-task -p -y` |
+| Remove | `npx skills remove visualize-my-task -g -y` | `npx skills remove visualize-my-task -y` |
+
+Add `-a claude-code` or another agent selection to the remove command to choose which tool to remove it from. See the [Skills CLI reference](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) for command options.
+
+For manual installation, download `visualize-my-task-<version>.zip` from the [latest Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/latest), extract it, and place the complete `visualize-my-task/` folder at the appropriate location below. Keep a backup first if that folder already exists. `~` means your user home directory.
+
+| Tool | Available across projects | Current project only |
+| --- | --- | --- |
+| Codex | `~/.agents/skills/visualize-my-task/` | `.agents/skills/visualize-my-task/` |
+| Claude Code | `~/.claude/skills/visualize-my-task/` | `.claude/skills/visualize-my-task/` |
+| Cursor | `~/.cursor/skills/visualize-my-task/` | `.cursor/skills/visualize-my-task/` |
+
+Keep the bundled `SKILL.md`, `scripts/`, `assets/`, `references/`, and other resources together. Invoke the skill with your tool's syntax above. `agents/openai.yaml` provides Codex display metadata.
+
+For a manual update, stop the board, keep a backup of the old folder, and replace it with the complete folder from the new ZIP. To remove a manual installation, stop the board and delete its installation folder.
 
 If you clone the repository, install the **skill subdirectory inside it**. You can also preview the bundled example from the repository root:
 
@@ -124,16 +153,17 @@ The interface can follow the project's Chinese or English language. Task names, 
 
 ## Verification record
 
-The table lists the version each check was last run against. `v1.1.0` rebuilt the interface and reran three of them; the HTTP, input boundary, and browser security checks are still the record from before the `v1.0.0` release and were not rerun for this version. The screenshots on this page were retaken with the `v1.1.0` interface, covering five display scenarios and desktop and mobile viewports.
+The local `v1.2.0` checks ran on macOS with Node.js 24.21.0. The table retains the version for each result. The 165 HTTP, input boundary, and browser security checks are from `v1.0.0`. The screenshots remain from `v1.1.0`, covering five display scenarios and desktop and mobile viewports.
 
 | Check | Result | Run against |
 | --- | --- | --- |
-| Automated regression tests | 101 passed. | `v1.1.0` |
+| Automated regression tests | 101 passed. | `v1.2.0` |
 | HTTP, input boundary, and browser security checks | 165 passed. | `v1.0.0` |
-| Independently extracted installation package | 101 tests and 12 CLI cases passed, including paths with Chinese characters and spaces. | `v1.1.0` |
-| Packaging filters | 3 integration tests passed, covering exclusion of private extra files and rejection of symlinks and missing files. | `v1.1.0` |
+| Independently extracted installation package | 101 tests and 12 CLI cases passed, including paths with Chinese characters and spaces. | `v1.2.0` |
+| Packaging filters | 3 integration tests passed, covering exclusion of private extra files and rejection of symlinks and missing files. | `v1.2.0` |
+| Installation entry points for all three tools | Installed with Skills CLI 1.9.0. `board.mjs --check` passed from the Codex, Claude Code, and Cursor directories. | `v1.2.0` |
 
-These results cover the bundled cases and the boundaries checked; they do not establish compatibility with every project format or browser. See the [1.1.0 release notes](docs/releases/1.1.0.md) for what changed in this version and the [1.0.0 release notes](docs/releases/1.0.0.md) for the original capabilities. Both are written in Chinese.
+Automated checks are configured for Linux and Windows. See [GitHub Actions](https://github.com/AlexShen-Oguri/visualize-my-task/actions) for run results. AI interaction sessions in Claude Code and Cursor await verification. The local results cover the bundled cases and the boundaries checked. See the [1.2.0 release notes](docs/releases/1.2.0.md) for installation across tools and the release workflow, [1.1.0 release notes](docs/releases/1.1.0.md) for interface changes, and [1.0.0 release notes](docs/releases/1.0.0.md) for the original capabilities. The release notes are written in Chinese.
 
 ## More ways to use it
 
@@ -141,13 +171,10 @@ These results cover the bundled cases and the boundaries checked; they do not es
 <summary>Choose your own plans, specifications, and history manually</summary>
 
 ```sh
-node ~/.codex/skills/visualize-my-task/scripts/board.mjs \
-  --root "/path/to/project" --plan "docs/implementation.md" \
-  --spec "docs/requirements.md" --changelog "docs/history.md" \
-  --lang auto --check
+node "<skill-dir>/scripts/board.mjs" --root "/path/to/project" --plan "docs/implementation.md" --spec "docs/requirements.md" --changelog "docs/history.md" --lang auto --check
 ```
 
-After checking the sources and states, replace `--check` with `--port 0` to start the board. You can repeat `--plan`, `--spec`, `--changelog`, and `--relations`; paths resolve relative to `--root`. Use `--lang en` or `--lang zh` to override the interface language.
+Replace `<skill-dir>` with the actual installation directory containing `SKILL.md`. After checking the sources and states, replace `--check` with `--port 0` to start the board. You can repeat `--plan`, `--spec`, `--changelog`, and `--relations`; paths resolve relative to `--root`. Use `--lang en` or `--lang zh` to override the interface language.
 
 A filename does not determine a document's role: `spec/implementation.md` can be an implementation plan, with specifications and history kept as reference material. See [project sources](visualize-my-task/references/project-sources.md), [task relationships](visualize-my-task/references/task-relations.md), and the [new project workflow](visualize-my-task/references/new-project.md).
 

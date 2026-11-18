@@ -1,0 +1,53 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUTF8: "1"
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: npm run check
+      - run: npm test
+      - run: npm run test:package
+  installation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install the skill for all three hosts
+        env:
+          DISABLE_TELEMETRY: "1"
+          DO_NOT_TRACK: "1"
+        run: npx --yes skills@1.9.0 add . --skill visualize-my-task -a codex claude-code cursor -y
+      - name: Test the shared Codex and Cursor installation
+        working-directory: .agents/skills/visualize-my-task
+        run: node --test
+      - name: Check the Claude Code installation
+        run: node .claude/skills/visualize-my-task/scripts/board.mjs --root .claude/skills/visualize-my-task/examples/cases/01-structured --check

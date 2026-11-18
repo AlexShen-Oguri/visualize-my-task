@@ -11,7 +11,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 # The packager names its outputs after the version in package.json; follow it instead of repeating the number here.
-RELEASE = 'dist/visualize-my-task-' + json.loads((ROOT / 'package.json').read_text())['version']
+RELEASE = 'dist/visualize-my-task-' + json.loads((ROOT / 'package.json').read_text(encoding='utf-8'))['version']
 
 
 class ReleasePackageTests(unittest.TestCase):
@@ -20,7 +20,7 @@ class ReleasePackageTests(unittest.TestCase):
         self.addCleanup(self.temporary.cleanup)
         self.checkout = Path(self.temporary.name) / 'checkout'
         self.checkout.mkdir()
-        for line in (ROOT / '.gitignore').read_text().splitlines():
+        for line in (ROOT / '.gitignore').read_text(encoding='utf-8').splitlines():
             if line.startswith('!/') and not line.endswith('/'):
                 relative = line[2:]
                 destination = self.checkout / relative
@@ -31,11 +31,11 @@ class ReleasePackageTests(unittest.TestCase):
     def package(self):
         result = subprocess.run(
             [sys.executable, str(self.checkout / 'scripts/package-release.py')],
-            cwd=self.checkout, capture_output=True, text=True, timeout=120,
+            cwd=self.checkout, capture_output=True, text=True, encoding='utf-8', timeout=120,
         )
         summary = self.checkout / (RELEASE + '.json')
         if summary.exists():
-            extraction = Path(json.loads(summary.read_text())['extraction']).parent
+            extraction = Path(json.loads(summary.read_text(encoding='utf-8'))['extraction']).parent
             self.addCleanup(shutil.rmtree, extraction, ignore_errors=True)
         return result
 
@@ -50,7 +50,7 @@ class ReleasePackageTests(unittest.TestCase):
         self.assertNotIn('visualize-my-task/assets/private-notes.md', names)
         self.assertNotIn('visualize-my-task/assets/secret.env', names)
         self.assertEqual(len(names), 49)
-        summary = json.loads((self.checkout / (RELEASE + '.json')).read_text())
+        summary = json.loads((self.checkout / (RELEASE + '.json')).read_text(encoding='utf-8'))
         self.assertEqual(summary['files'], 49)
         self.assertGreater(summary['packagedTests'], 0)
         self.assertEqual(summary['failures'], 0)

@@ -3,6 +3,8 @@
 *
 
 !/docs/
+!/.github/
+!/.github/workflows/
 !/scripts/
 !/visualize-my-task/
 !/docs/releases/
@@ -37,6 +39,9 @@
 !/SECURITY.md
 !/docs/releases/1.0.0.md
 !/docs/releases/1.1.0.md
+!/docs/releases/1.2.0.md
+!/.github/workflows/test.yml
+!/.github/workflows/release.yml
 !/docs/images/overview.png
 !/docs/images/task-details.png
 !/docs/images/workstreams.png

@@ -2,7 +2,7 @@
 name: visualize-my-task
 description: Use when a user wants a local development dashboard from Markdown plans, specs or changelogs (开发进度看板、实时开发排程), needs added tasks attached to a workflow, or adopts the board from a new project's start. Sources follow the project's actual planning locations. Not for product analytics or dashboards sourced only from GitHub Issues.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Visualize My Task
@@ -17,7 +17,7 @@ Show documented development as a local operation map. Node 20+ scripts reread Ma
 2. Reconcile task relationships before launch. Read [task-relations.md](references/task-relations.md) when tasks were added later, different workstreams coexist, or the plan is informal. Separate **visual attachment** (`After`/`Before`) from **blocking prerequisites** (`Dependencies`). Explicit task metadata wins; use prose such as “finish this before round two” as evidence. Dates, titles, Git order, and file position alone do not establish dependencies. Leave uncertain relationships unplaced and visible.
 
    When opening or refreshing, prepare relation-only `BOARD.md` from clearly documented relationships as a derived view input; preserve existing explicit metadata and include its evidence. If the project is read-only, save it in the task's artifact directory and pass `--relations` explicitly. This does not change the original plan, create new tasks, or infer missing states. New planning or updates to original task records require authorization from that planning/development task. Keep each task's label and states in its original plan; relation rows reference its stable ID. During authorized development, maintain these relationships when recording new work. Do not create a new plan just to open the board.
-3. Run the parser using this skill directory, independently of the target project:
+3. Resolve `<skill-dir>` from the directory containing this loaded `SKILL.md`, using the host-provided skill path or the file's location. Keep the complete skill folder together. Confirm Node.js 20+ is available to the host's execution tool, then run the parser independently of the target project. Quote filesystem paths and use forward slashes in command examples:
 
    ```sh
    node "<skill-dir>/scripts/board.mjs" --root "<project-dir>" --plan "docs/PLAN.md" --lang auto --check
@@ -26,7 +26,7 @@ Show documented development as a local operation map. Node 20+ scripts reread Ma
    Inspect source errors, representative states, relation warnings, and actual current/next work. Use `--tasks tables` if detailed checklists repeat the table's work. Select an actual task document with `--plan`, and normative specifications with repeatable `--spec`, regardless of their filenames. A prose-only spec is a valid reference source, with no invented task progress. A prose-only file explicitly supplied as a task plan reports its unsupported format without changing it.
 
    Follow the project's primary language for interface labels and accessible names. `--lang auto` (the default) resolves an explicit project declaration before selected task documents, then specifications/history, with Chinese as the uncertain fallback. A user-selected `--lang en` or `--lang zh` wins. Inspect other project language conventions and pass the matching override when needed; read [project-sources.md](references/project-sources.md#interface-language) for supported declarations and precedence. Confirm `snapshot.language` is `en` or `zh`. Task names, recorded states, details, specs, history and source excerpts stay in their original language.
-4. Start with the same source arguments plus `--port 0`, capture the printed URL/PID/root/sources, fetch `/api/plan` and the page, and open the URL in the host browser panel. Keep its managed terminal alive. Verify an existing board's sources before reusing it; an occupied port is not permission to stop another process. Stop the recorded process with Ctrl+C when requested. A sandbox's `EPERM` bind/fetch failure requires that host's normal execution approval path.
+4. Start with the same source arguments plus `--port 0`, capture the printed URL/PID/root/sources, and fetch `/api/plan` and the page. Open the URL in the host browser panel when available, otherwise use its local browser-opening tool. If neither is available, give the user the local URL to open. Keep the server running through the host's supported long-running terminal, session, or background-job facility, and retain its process handle. Verify an existing board's sources before reusing it; an occupied port is not permission to stop another process. Stop the recorded process with the host's process controls or Ctrl+C when requested. A sandbox's `EPERM` bind/fetch failure requires that host's normal execution approval path.
 
 ## Sources and graph semantics
 
@@ -54,4 +54,4 @@ Self-contained synthetic cases ship in [examples/cases/README.md](examples/cases
 
 The server binds `127.0.0.1`, serves fixed GET/HEAD routes, validates Host/Origin, and does not expose raw files or accept writes. This workflow does not authorize publication. Each source retains its last good snapshot marked stale after a read failure; first-read failures stay errors. Restarting loses that in-memory fallback. Limits are 16 files, 2,000,000 bytes and 2,000 records per file.
 
-After changes, run `node --test "<skill-dir>"/scripts/*.test.mjs`. Exercise new input shapes and the rendered board in an isolated project before using live development records.
+After changes, run `node --test` with the working directory set to `<skill-dir>`. Exercise new input shapes and the rendered board in an isolated project before using live development records.

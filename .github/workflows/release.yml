@@ -1,0 +1,66 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUTF8: "1"
+
+concurrency:
+  group: release-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify release versions
+        id: version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { appendFileSync, readFileSync } from 'node:fs';
+
+          const packageMetadata = JSON.parse(readFileSync('package.json', 'utf8'));
+          const skill = readFileSync(`${packageMetadata.name}/SKILL.md`, 'utf8');
+          const frontmatter = skill.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)?.[1];
+          const skillVersion = frontmatter?.match(/^  version: ["']?([^"'\r\n]+?)["']?\s*$/m)?.[1];
+
+          assert.equal(process.env.RELEASE_TAG, `v${packageMetadata.version}`, 'Release tag must match package.json');
+          assert.equal(skillVersion, packageMetadata.version, 'Skill version must match package.json');
+          appendFileSync(process.env.GITHUB_OUTPUT, `prefix=${packageMetadata.name}-${packageMetadata.version}\n`);
+          NODE
+      - run: npm run check
+      - run: npm test
+      - run: npm run test:package
+      - run: npm run package
+      - name: Upload release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_PREFIX: ${{ steps.version.outputs.prefix }}
+        run: |
+          gh release upload "$RELEASE_TAG" \
+            "dist/$RELEASE_PREFIX.zip" \
+            "dist/$RELEASE_PREFIX.zip.sha256" \
+            --clobber
