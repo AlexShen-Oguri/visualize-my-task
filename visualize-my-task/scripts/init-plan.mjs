@@ -96,4 +96,12 @@ async function main() {
   console.log(JSON.stringify(await initializePlan({ root: values.root, title: values.title, goal: values.goal, tasks: values.task })));
 }
 
-if (process.argv[1] && await realpath(process.argv[1]).catch(() => null) === fileURLToPath(import.meta.url)) main().catch(error => { console.error(`计划初始化失败：${error.message}`); process.exitCode = 1; });
+if (
+  process.argv[1] &&
+  await realpath(process.argv[1]).catch(() => null) === await realpath(fileURLToPath(import.meta.url))
+) {
+  main().catch(error => {
+    console.error(`计划初始化失败：${error.message}`);
+    process.exitCode = 1;
+  });
+}

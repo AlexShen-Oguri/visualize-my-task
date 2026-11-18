@@ -576,6 +576,11 @@ test('CLI works through a linked skill installation without starting on import',
     assert.equal(result.status, 0, result.stderr);
     assert.ok(result.stdout.trim(), 'Linked skill CLI must print its snapshot');
     assert.equal(JSON.parse(result.stdout).items.length, 1);
+    for (const filename of ['board.mjs', 'init-plan.mjs']) {
+      const help = spawnSync(process.execPath, ['--preserve-symlinks-main', join(linkedSkill, 'scripts', filename), '--help'], { encoding: 'utf8', timeout: 2000 });
+      assert.equal(help.status, 0, help.stderr);
+      assert.ok(help.stdout.startsWith(`node ${filename} `), `${filename} must run through a preserved symlink`);
+    }
     const imported = spawnSync(process.execPath, ['--input-type=module', '-e', `await import(${JSON.stringify(new URL('./board.mjs', import.meta.url).href)}); console.log('imported')`], { encoding: 'utf8', timeout: 2000 });
     assert.equal(imported.status, 0, imported.stderr);
     assert.equal(imported.stdout.trim(), 'imported');
