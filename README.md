@@ -1,135 +1,135 @@
 <p align="center">
-  <img src="docs/images/logo.png" alt="Visualize My Task 标志：连接任务节点的路线" width="112">
+  <img src="docs/images/logo.png" alt="Visualize My Task logo: a route connecting task nodes" width="112">
 </p>
 
 <h1 align="center">Visualize My Task</h1>
 
-<p align="center"><strong>“See the plan. Know your next move.”</strong><br>看清计划，走好下一步。</p>
+<p align="center"><strong>“See the plan. Know your next move.”</strong></p>
 
-<p align="center"><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
+<p align="center"><a href="README.zh-CN.md">简体中文</a> · <strong>English</strong></p>
 
-**把 Markdown 开发计划，变成一张看得清的行动地图。**
+**Turn your Markdown development plans into a clear map of what to do.**
 
-正在做什么、下一步做什么、哪些工作还在等验收，打开看板就能看到。临时追加的任务也能接回原有路线。
+See what is in progress, what comes next, and what still needs acceptance. Keep new tasks connected to the original plan as your project grows.
 
-`Codex · Claude Code · Cursor` · `中文 / English` · `本机运行` · `零第三方运行依赖`
+`Codex · Claude Code · Cursor` · `Chinese / English` · `Runs locally` · `No third-party runtime dependencies`
 
-[下载安装](https://github.com/AlexShen-Oguri/visualize-my-task/releases/latest) · [快速开始](#快速开始) · [实际运行图](#实际运行图) · [案例说明](visualize-my-task/examples/cases/README.md)
+[Download](https://github.com/AlexShen-Oguri/visualize-my-task/releases/latest) · [Quick start](#quick-start) · [Screenshots](#screenshots) · [Example cases](visualize-my-task/examples/cases/README.md)
 
-![实际运行的行动地图，展示三轮主线、当前追加任务和并行支线](docs/images/overview.png)
+![An actual task map showing three development rounds, the current added task, and parallel branches](docs/images/overview.png)
 
-*v1.1.0 的实际浏览器截图，使用随包的合成测试案例。两项追加工作都接在第一轮与第二轮之间，只有必要任务会阻塞第二轮。*
+*Actual browser screenshot from v1.1.0 using a bundled synthetic example. Both added tasks sit between the first and second rounds; only required work blocks the second round. The screenshots on this page show the Chinese interface.*
 
-## 计划越来越长时，怎么跟得上
+## Keep up as the plan grows
 
-和 AI 一起开发时，计划里会不断增加任务：原定三轮开发中间补一项修复，再加一次检查，最后准备发布。读完文档仍要重新确认当前在哪一步，以及“写完”“测过”“验收过”各自是什么意思。
+When you develop with AI, plans keep changing: a fix appears between two planned rounds, another check is added, and release work follows. Even after reading the documents, you still need to work out where you are, and whether “implemented,” “tested,” and “accepted” mean the same thing.
 
-Visualize My Task 把这些记录放到同一张图里。你继续使用项目原有的 Markdown，AI 助手在已授权的开发工作中维护计划，看板同步已保存的内容。
+Visualize My Task brings those records into one map. Keep using your project's Markdown files. Your AI assistant maintains the plan within the development work you have authorized, and the board follows saved changes.
 
-## 能帮你看清什么
+## What you can see
 
-| 你关心的事 | 看板怎么展示 |
+| What you need to know | How the board helps |
 | --- | --- |
-| **现在该关注哪项工作** | 标出当前任务，以及有记录依据的下一步；可以定位、缩放、按章节浏览或搜索任务。 |
-| **临时任务应该接在哪里** | 区分主线、必要支线和并行支线。地图位置与阻塞条件分别记录，原有任务编号可以保留。 |
-| **测试通过，是否就算完成** | 开发、自动验证、用户验收、交付独立显示。通过测试的任务仍然可以等待验收、尚未交付。 |
-| **开发、检查和发布之间有什么关系** | 切换开发、安全审计、发布交付地图；跨图前置任务仍能在详情中追踪，并保留候选版本范围。 |
-| **项目已经有自己的文档结构** | 使用实际计划、规范和历史的位置。支持任务表、勾选清单、自定义文件路径和中英界面。 |
+| **What needs attention now** | Highlights the current task and a next step supported by the records. Locate tasks, zoom, browse sections, or search. |
+| **Where an added task belongs** | Distinguishes the main route, required branches, and parallel branches. Map placement and blocking dependencies are recorded separately; existing task IDs can stay. |
+| **Whether passing tests means the work is finished** | Shows development, automated verification, user acceptance, and delivery independently. A task can pass its tests while still awaiting acceptance and delivery. |
+| **How development, checks, and release work connect** | Switch between development, security review, and release maps. Follow prerequisites across maps and retain the candidate version scope. |
+| **Whether your existing documents will fit** | Uses your actual plan, specification, and history locations. Supports task tables, checklists, custom file paths, and Chinese or English interface text. |
 
-关系依据不足时，看板会保留未知状态或提示，不会把整份能力清单自动排成开发顺序。缺少任务记录时，也不会从规范中的勾选推断开发进度。
+When the records do not establish a relationship, the board keeps it unknown or shows a notice. It does not turn an entire capability list into an assumed development sequence, or infer implementation progress from checked specification items.
 
-## 实际运行图
+## Screenshots
 
-以下五张图均来自 v1.1.0 在本地浏览器中的实际运行，使用随包合成案例，不包含私人项目记录。点击图片可以查看大图。
+All five screenshots on this page are actual browser captures of v1.1.0, using bundled synthetic cases. They contain no private project records. Click an image to open the full-size version.
 
-### 开发完成、测试通过，还可以等待验收
+### Implemented and tested can still mean awaiting acceptance
 
-![任务详情中的四种独立状态：开发完成、自动验证通过、等待用户验收、尚未交付](docs/images/task-details.png)
+![Four independent task states: development done, automated verification passed, user acceptance pending, and not yet delivered](docs/images/task-details.png)
 
-图中的 `P-01` 已开发完成并通过自动验证，用户验收和交付仍单独记录。测试通过或推送代码，不会自动替你标记为已验收。
+`P-01` is implemented and has passed automated verification. User acceptance and delivery remain separate records. Passing tests or pushing code does not automatically mark the task as accepted.
 
-地图上每块任务牌右上角的四个标记，依次对应开发、验证、验收、交付；不打开详情也能看出任务停在哪一步。
+The four marks at the top right of each task plate stand for development, verification, acceptance, and delivery, in that order, so the map shows where a task has stopped before you open its details.
 
-### 发布任务能追踪开发与检查的前置条件
+### Release work retains its prerequisites across maps
 
-![发布地图中的任务详情，展示功能与安全复核的跨图依赖和候选版本范围](docs/images/workstreams.png)
+![A release task showing prerequisites from development and security review, plus its candidate version scope](docs/images/workstreams.png)
 
-`REL-01` 同时等待功能任务和安全复核。切换到发布地图后，依赖仍然保留；点击前置任务可以跳到它所在的地图。图中的 `v0.6.0-rc1` 是案例的候选版本。
+`REL-01` waits for both a feature task and a security review. Those dependencies stay visible in the release map; select a prerequisite to open its map. `v0.6.0-rc1` is the example's candidate version.
 
-### 只有规范，也能先查看参考资料
+### Start with reference material when there is no plan yet
 
-![只有产品规范的项目，展示空任务状态和规范来源面板](docs/images/spec-reference.png)
+![A project with specifications only, showing an empty task state and the source reference panel](docs/images/spec-reference.png)
 
-项目暂时只有规范时，可以阅读原始需求与验收标准。规范里的已勾选条目不会变成已完成任务；已有项目仅打开看板，也不会自动新建计划。
+If a project only has specifications, you can read its original requirements and acceptance criteria. Checked specification items do not become completed tasks. Opening the board for an existing project does not automatically create a plan.
 
-### 手机上查看当前工作
+### Check the current task on your phone
 
-<img src="docs/images/mobile.png" alt="390 像素手机视口的真实运行截图，展示当前追加任务和独立状态" width="320">
+<img src="docs/images/mobile.png" alt="Actual browser capture at a 390-pixel mobile viewport, showing the current added task and its independent states" width="320">
 
-手机保留地图浏览和任务详情，可以查看当前任务、来源及状态。图中为 390 像素视口的浏览器测试。
+The mobile layout keeps map browsing and task details available, including the current task, its sources, and its states. This capture uses a 390-pixel browser viewport.
 
-## 快速开始
+## Quick start
 
-安装后，在目标项目中按所用工具调用：
+After installation, invoke the skill from your target project using your tool's syntax:
 
-| 工具 | 调用方式 |
+| Tool | How to invoke |
 | --- | --- |
-| Codex | 输入 `$visualize-my-task 打开这个项目的开发看板`。 |
-| Claude Code | 输入 `/visualize-my-task 打开这个项目的开发看板`。 |
-| Cursor | 在 Agent 聊天中输入 `/`，搜索并选择 `visualize-my-task`，再描述要打开的项目看板。 |
+| Codex | Enter `$visualize-my-task Open this project's development board.` |
+| Claude Code | Enter `/visualize-my-task Open this project's development board.` |
+| Cursor | Type `/` in Agent chat, search for and select `visualize-my-task`, then describe the project board to open. |
 
-各工具的 skill 发现与调用方式见 [Codex 文档](https://learn.chatgpt.com/docs/build-skills)、[Claude Code 文档](https://code.claude.com/docs/en/skills) 和 [Cursor 文档](https://cursor.com/docs/skills)。
+See the [Codex docs](https://learn.chatgpt.com/docs/build-skills), [Claude Code docs](https://code.claude.com/docs/en/skills), and [Cursor docs](https://cursor.com/docs/skills) for skill discovery and invocation.
 
-1. **选对记录。** AI 助手核对项目使用的计划、规范、历史与关系文档，沿用实际文件位置。
-2. **打开看板。** AI 助手按工具能力打开浏览器面板或本机浏览器，也可返回本机 URL 供你打开。浏览当前任务、下一步、追加支线和独立状态。
-3. **继续开发。** 在已授权的开发工作中维护原计划；所选文档保存后，看板每两秒同步一次。
+1. **Choose the right records.** Your AI assistant checks the project's plans, specifications, history, and relationship documents, using their actual locations.
+2. **Open the board.** Your AI assistant uses the tool's browser panel or local browser, or returns the local URL for you to open. Browse the current task, next step, added branches, and independent states.
+3. **Continue developing.** Maintain the original plan within the work you have authorized. The board checks saved changes in the selected documents every two seconds.
 
-选择 skill 后，也可以这样描述你的场景：
+After selecting the skill, you can also describe your situation directly:
 
 ```text
-看看这份计划里，当前正在做什么，下一步是什么。
+Show what is in progress in this plan and what comes next.
 
-这次追加的任务已记录在计划里，按已有依据整理关系并打开看板。
+The added tasks are already recorded in the plan. Organize their relationships from the existing evidence and open the board.
 
-从第一天为这个新项目建立并维护计划。
+Establish and maintain a plan for this new project from day one.
 ```
 
-**本地服务只读。** 文档维护由 AI 助手或单独的辅助脚本在授权范围内完成；看板服务不监听对话、不调用模型、不替你修改任务状态。
+**The local service is read-only.** Your AI assistant or a separate helper script maintains documents within the authorized scope. The board service does not listen to conversations, call a model, or change task states for you.
 
-## 安装
+## Installation
 
-看板运行需要 **Node.js 20+** 和本机浏览器。无需安装第三方运行依赖或执行构建。
+Running the board requires **Node.js 20+** and a local browser. There are no third-party runtime dependencies to install and no build step.
 
-通过 [Skills CLI](https://github.com/vercel-labs/skills) 安装到 Codex、Claude Code 和 Cursor，当前安装器需要 **Node.js 22.20+**。
+Install for Codex, Claude Code, and Cursor with the [Skills CLI](https://github.com/vercel-labs/skills). The current installer requires **Node.js 22.20+**.
 
 ```sh
 npx skills add AlexShen-Oguri/visualize-my-task --skill visualize-my-task -a codex claude-code cursor -g -y
 ```
 
-`-g` 表示所有项目可用，省略后安装到当前项目。`-a` 后可只保留自己使用的工具，`-y` 跳过安装确认。三种工具使用同一份 skill 源码。
+`-g` makes the skill available across projects. Omit it to install into the current project. Keep only the tools you use after `-a`. `-y` skips installation confirmation. All three tools use the same skill source.
 
-更新和卸载时，选择与安装时相同的范围。项目级操作在目标项目根目录执行。
+Choose the same scope when updating or removing the installation. Run project-level commands from the target project's root.
 
-| 操作 | 所有项目可用的安装 | 仅当前项目的安装 |
+| Operation | Global installation | Project installation |
 | --- | --- | --- |
-| 更新 | `npx skills update visualize-my-task -g -y` | `npx skills update visualize-my-task -p -y` |
-| 卸载 | `npx skills remove visualize-my-task -g -y` | `npx skills remove visualize-my-task -y` |
+| Update | `npx skills update visualize-my-task -g -y` | `npx skills update visualize-my-task -p -y` |
+| Remove | `npx skills remove visualize-my-task -g -y` | `npx skills remove visualize-my-task -y` |
 
-卸载命令可加 `-a claude-code` 等参数选择要移除的工具。命令选项见 [Skills CLI 参考](https://github.com/vercel-labs/skills/blob/main/docs/commands.md)。
+Add `-a claude-code` or another agent selection to the remove command to choose which tool to remove it from. See the [Skills CLI reference](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) for command options.
 
-手动安装时，从 [最新 Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/latest) 下载 `visualize-my-task-<version>.zip`，解压后将完整的 `visualize-my-task/` 放到下表对应位置。已有同名安装时先保留副本，`~` 表示用户主目录。
+For manual installation, download `visualize-my-task-<version>.zip` from the [latest Release](https://github.com/AlexShen-Oguri/visualize-my-task/releases/latest), extract it, and place the complete `visualize-my-task/` folder at the appropriate location below. Keep a backup first if that folder already exists. `~` means your user home directory.
 
-| 工具 | 所有项目可用 | 仅当前项目可用 |
+| Tool | Available across projects | Current project only |
 | --- | --- | --- |
 | Codex | `~/.agents/skills/visualize-my-task/` | `.agents/skills/visualize-my-task/` |
 | Claude Code | `~/.claude/skills/visualize-my-task/` | `.claude/skills/visualize-my-task/` |
 | Cursor | `~/.cursor/skills/visualize-my-task/` | `.cursor/skills/visualize-my-task/` |
 
-保留目录中的 `SKILL.md`、`scripts/`、`assets/`、`references/` 等随包内容，安装后按上方对应工具的方式调用。`agents/openai.yaml` 提供 Codex 的展示信息。
+Keep the bundled `SKILL.md`, `scripts/`, `assets/`, `references/`, and other resources together. Invoke the skill with your tool's syntax above. `agents/openai.yaml` provides Codex display metadata.
 
-手动更新时，先停止看板并保留旧目录副本，再用新版 ZIP 中的完整目录替换。手动卸载时，停止看板并删除对应的安装目录。
+For a manual update, stop the board, keep a backup of the old folder, and replace it with the complete folder from the new ZIP. To remove a manual installation, stop the board and delete its installation folder.
 
-克隆仓库时，安装的是仓库内的 **skill 子目录**。也可以先在仓库根目录预览随包案例：
+If you clone the repository, install the **skill subdirectory inside it**. You can also preview the bundled example from the repository root:
 
 ```sh
 git clone https://github.com/AlexShen-Oguri/visualize-my-task.git
@@ -137,60 +137,60 @@ cd visualize-my-task
 npm start
 ```
 
-终端会打印本机地址；默认展示合成案例，关闭启动进程即可停止服务。
+The terminal prints the local address. The default preview uses a synthetic case; stop the process to stop the service.
 
-## 哪些项目能用
+## Projects it works with
 
-| 项目情况 | 展示方式 |
+| Your project | What you see |
 | --- | --- |
-| 已有分轮计划，开发中追加工作 | 保留主线，并按记录挂接必要任务或并行支线。 |
-| 计划比较零散，只有近期目标 | 按主题分组，突出已记录的当前与近期工作。 |
-| 暂时没有计划，或只有历史 | 显示空任务状态或变更历史，不自动制造进度。 |
-| 开发、检查和发布同时推进 | 共用任务身份，分图查看并追踪跨图前置条件。 |
-| 新项目，或文档放在自定义目录 | 可从首日维护计划，也能沿用自定义实施文档与规范位置。 |
+| A plan organized into rounds, with work added during development | The original main route, with required tasks or parallel branches attached according to the records. |
+| A loose plan with only near-term goals | Tasks grouped by topic, highlighting recorded current and upcoming work. |
+| No plan yet, or only a change history | An empty task state or change history, without invented progress. |
+| Development, checks, and release work happening together | Shared task identities, separate maps, and prerequisites tracked across them. |
+| A new project, or documents in custom directories | Plan maintenance from day one, or existing custom locations for implementation documents and specifications. |
 
-界面可以跟随项目使用中文或英文；任务名称、说明和来源原文保持不变。全部合成场景见 [案例索引](visualize-my-task/examples/cases/README.md) 与 [语言案例](visualize-my-task/examples/cases/07-language/README.md)。
+The interface can follow the project's Chinese or English language. Task names, descriptions, and original source text stay unchanged. Explore the [case index](visualize-my-task/examples/cases/README.md) and [language examples](visualize-my-task/examples/cases/07-language/README.md).
 
-## 验证记录
+## Verification record
 
-`v1.2.0` 的本机检查在 macOS、Node.js 24.21.0 上完成。下表保留各项结果的运行版本；165 项 HTTP、输入边界和浏览器安全检查来自 `v1.0.0`。本页截图仍为 `v1.1.0`，覆盖五个展示场景和桌面／手机视口。
+The local `v1.2.0` checks ran on macOS with Node.js 24.21.0. The table retains the version for each result. The 165 HTTP, input boundary, and browser security checks are from `v1.0.0`. The screenshots remain from `v1.1.0`, covering five display scenarios and desktop and mobile viewports.
 
-| 检查 | 结果 | 运行版本 |
+| Check | Result | Run against |
 | --- | --- | --- |
-| 自动回归测试 | 101 项通过。 | `v1.2.0` |
-| HTTP、输入边界和浏览器安全检查 | 165 项通过。 | `v1.0.0` |
-| 安装包独立解压 | 101 项测试与 12 组 CLI 案例通过，包含中文和空格路径。 | `v1.2.0` |
-| 打包过滤 | 3 项实际集成测试通过；私人附加文件、符号链接与缺失文件得到相应处理。 | `v1.2.0` |
-| 三个工具的安装入口 | Skills CLI 1.9.0 安装后，Codex、Claude Code、Cursor 对应目录的 `board.mjs --check` 均通过。 | `v1.2.0` |
+| Automated regression tests | 101 passed. | `v1.2.0` |
+| HTTP, input boundary, and browser security checks | 165 passed. | `v1.0.0` |
+| Independently extracted installation package | 101 tests and 12 CLI cases passed, including paths with Chinese characters and spaces. | `v1.2.0` |
+| Packaging filters | 3 integration tests passed, covering exclusion of private extra files and rejection of symlinks and missing files. | `v1.2.0` |
+| Installation entry points for all three tools | Installed with Skills CLI 1.9.0. `board.mjs --check` passed from the Codex, Claude Code, and Cursor directories. | `v1.2.0` |
 
-Linux、Windows 已配置自动检查，运行结果见 [GitHub Actions](https://github.com/AlexShen-Oguri/visualize-my-task/actions)。Claude Code 和 Cursor 的 AI 交互会话尚待验证。上述本机结果覆盖随包案例和已检查的边界。跨工具安装与发布流程见 [1.2.0 发布说明](docs/releases/1.2.0.md)，界面变化见 [1.1.0 发布说明](docs/releases/1.1.0.md)，首个版本的能力见 [1.0.0 发布说明](docs/releases/1.0.0.md)。
+Automated checks are configured for Linux and Windows. See [GitHub Actions](https://github.com/AlexShen-Oguri/visualize-my-task/actions) for run results. AI interaction sessions in Claude Code and Cursor await verification. The local results cover the bundled cases and the boundaries checked. See the [1.2.0 release notes](docs/releases/1.2.0.md) for installation across tools and the release workflow, [1.1.0 release notes](docs/releases/1.1.0.md) for interface changes, and [1.0.0 release notes](docs/releases/1.0.0.md) for the original capabilities. The release notes are written in Chinese.
 
-## 进一步使用
+## More ways to use it
 
 <details>
-<summary>手动选择自己的计划、规范与历史</summary>
+<summary>Choose your own plans, specifications, and history manually</summary>
 
 ```sh
 node "<skill-dir>/scripts/board.mjs" --root "/path/to/project" --plan "docs/implementation.md" --spec "docs/requirements.md" --changelog "docs/history.md" --lang auto --check
 ```
 
-将 `<skill-dir>` 替换为包含 `SKILL.md` 的实际安装目录。确认来源与状态后，将 `--check` 替换为 `--port 0` 启动看板。`--plan`、`--spec`、`--changelog`、`--relations` 均可重复传入；路径相对 `--root` 解析。`--lang en` 或 `--lang zh` 可以覆盖界面语言。
+Replace `<skill-dir>` with the actual installation directory containing `SKILL.md`. After checking the sources and states, replace `--check` with `--port 0` to start the board. You can repeat `--plan`, `--spec`, `--changelog`, and `--relations`; paths resolve relative to `--root`. Use `--lang en` or `--lang zh` to override the interface language.
 
-文件名不决定角色：`spec/implementation.md` 可以是实施计划，而规范与历史作为参考资料。详见 [来源规则](visualize-my-task/references/project-sources.md)、[任务关系](visualize-my-task/references/task-relations.md) 和 [新项目工作流](visualize-my-task/references/new-project.md)。
-
-</details>
-
-<details>
-<summary>本地运行与隐私边界</summary>
-
-正常启动绑定 `127.0.0.1`，提供固定的只读 GET / HEAD 路由并校验 Host 和 Origin。不要通过代理或隧道暴露到公网。所选文档原文会显示在本机看板中，只选择需要展示的资料。
-
-读取失败时保留最近一次成功快照并标记过期，重启后该内存快照消失。最多读取 16 个来源，每个来源上限为 2,000,000 字节、2,000 条记录。安全报告方式见 [SECURITY.md](SECURITY.md)。
+A filename does not determine a document's role: `spec/implementation.md` can be an implementation plan, with specifications and history kept as reference material. See [project sources](visualize-my-task/references/project-sources.md), [task relationships](visualize-my-task/references/task-relations.md), and the [new project workflow](visualize-my-task/references/new-project.md).
 
 </details>
 
 <details>
-<summary>运行测试与制作安装包</summary>
+<summary>Local operation and privacy boundaries</summary>
+
+Normal startup binds to `127.0.0.1`, serves fixed read-only GET / HEAD routes, and validates Host and Origin. Do not expose the service to the public internet through a proxy or tunnel. The local board displays the original text of selected documents; choose only material you intend to show.
+
+If reading fails, the service keeps the last successful snapshot and marks it stale. That in-memory snapshot disappears after a restart. The service reads at most 16 sources, with a limit of 2,000,000 bytes and 2,000 records per source. See [SECURITY.md](SECURITY.md) for reporting security issues.
+
+</details>
+
+<details>
+<summary>Run tests and build an installation package</summary>
 
 ```sh
 npm run check
@@ -199,6 +199,6 @@ npm run test:package
 npm run package
 ```
 
-打包需要 Python 3 与 Node.js 20+。安装包包含 skill 运行资源、测试、工作流参考和合成案例；README 展示图片只保存在仓库，不进入安装 ZIP。私人开发记录、旧 UI 和验证快照继续排除。字体许可见 [OFL-BarlowCondensed.txt](visualize-my-task/assets/OFL-BarlowCondensed.txt)。
+Packaging requires Python 3 and Node.js 20+. The installation package includes skill runtime resources, tests, workflow references, and synthetic cases. README images stay in the repository and are excluded from the installation ZIP. Private development records, old UI versions, and verification snapshots remain excluded. The font license is in [OFL-BarlowCondensed.txt](visualize-my-task/assets/OFL-BarlowCondensed.txt).
 
 </details>
