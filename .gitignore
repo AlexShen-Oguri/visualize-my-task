@@ -48,6 +48,12 @@
 !/docs/images/spec-reference.png
 !/docs/images/mobile.png
 !/docs/images/logo.png
+!/docs/images/en/
+!/docs/images/en/overview.png
+!/docs/images/en/task-details.png
+!/docs/images/en/workstreams.png
+!/docs/images/en/spec-reference.png
+!/docs/images/en/mobile.png
 !/package.json
 !/scripts/package-release.py
 !/scripts/package-release.test.py

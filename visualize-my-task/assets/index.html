@@ -323,7 +323,7 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
     .record-cell .hex{width:30px;height:34px}
     :lang(en) .record-cell dt span:last-child{min-height:2.6em}
     .record-cell dt{display:grid;gap:8px;font-size:11px;color:var(--fg-3);line-height:1.3}
-    .record-cell dd{margin-top:2px;font-size:13px;font-weight:650;line-height:1.35;overflow-wrap:anywhere}
+    .record-cell dd{margin-top:2px;font-size:13px;font-weight:650;line-height:1.35;overflow-wrap:break-word}
     .record-cell[data-kind="on"] dd{color:#7cc8f6}
     .record-cell[data-kind="active"] dd,.record-cell[data-kind="part"] dd{color:#f6bd5c}
     .record-cell[data-kind="bad"] dd{color:#f08a78}
@@ -433,7 +433,9 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
       .panel-tabs{padding:0 16px}
       .dossier-id{font-size:54px}
       .error-toast{top:112px}
-      .veil.top{height:200px}
+      .veil.top{height:236px;background:linear-gradient(180deg,#07090b 0,#07090b 160px,transparent 100%)}
+      .record{grid-template-columns:repeat(2,minmax(0,1fr))}
+      :lang(en) .record-cell dt span:last-child{min-height:0}
       .veil.bottom{height:190px}
       body.panel-open .empty-map{display:none}
     }
@@ -585,7 +587,7 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
     let plan=null,mission=null,revision=null,busy=false,lastSuccess=0,stale=true,initial=true,errorDismissed=false;
     let selectedKey=null,selectedGroup='all',selectedView='all',filter='all',utilityTab='tasks',keyboardNavigation=false;
     let byKey=new Map(),positions=new Map(),columnOf=new Map(),zones=[],selectionHistory=[],fingerprints=new Map();
-    let camera={x:0,y:0,z:1},flight=0,flightTimer=0,zoomBand='',captionScale='',autoFrame=null,linked=false;
+    let camera={x:0,y:0,z:1},flight=0,flightTimer=0,zoomBand='',captionScale='',arrowRoutes=[],autoFrame=null,linked=false;
     let labels={},workstreamLabels={},fieldLabels={};
     const nodeElements=new Map();
 
@@ -684,7 +686,7 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
       $('zoom-in').disabled=camera.z>=ZOOM.max-.001;$('zoom-out').disabled=camera.z<=ZOOM.min+.001;
       const band=camera.z<.46?'far':'near',caption=clamp(.92/camera.z,1,1.7).toFixed(2);
       if(band!==zoomBand){zoomBand=band;$('map-plane').dataset.zoom=band;}
-      if(caption!==captionScale){captionScale=caption;$('map-plane').style.setProperty('--caption',caption);}
+      if(caption!==captionScale){captionScale=caption;$('map-plane').style.setProperty('--caption',caption);placeArrows();}
       const pad=value=>String(Math.round(value)).padStart(4,'0');
       $('readout').textContent=`X ${pad((window.innerWidth/2-camera.x)/camera.z)} · Y ${pad((window.innerHeight/2-camera.y)/camera.z)} · ${Math.round(camera.z*100)}%`;
     }
@@ -708,7 +710,7 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
       let left=small?10:28,right=width-(small?10:86);
       let top=Math.max($('workspace-nav').getBoundingClientRect().bottom,document.querySelector('.project').getBoundingClientRect().bottom)+18,bottom=document.querySelector('.bottom-hud').getBoundingClientRect().top-20;
       const panel=[$('dossier'),$('utility')].find(node=>!node.hidden);
-      if(panel){if(small)bottom=Math.min(bottom,height-panel.offsetHeight-14);else right=Math.min(right,width-panel.offsetWidth-30);}
+      if(panel){if(small)bottom=Math.min(bottom,height-panel.offsetHeight-14);else right=Math.min(right,width-panel.offsetWidth-86);}
       else if(!$('legend').hidden&&width>900)right=Math.min(right,$('legend').getBoundingClientRect().left-24);
       if(bottom-top<150){top=Math.min(top,height*.28);bottom=Math.max(bottom,top+150);}
       return {left,right,top,bottom,cx:(left+right)/2,cy:(top+bottom)/2,width:right-left,height:bottom-top};
@@ -716,7 +718,14 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
     function boundsOf(keys){
       const points=keys.map(key=>positions.get(key)).filter(Boolean);
       if(!points.length)return null;
-      return {minX:Math.min(...points.map(p=>p.x))-BOX.left,maxX:Math.max(...points.map(p=>p.x))+BOX.right,minY:Math.min(...points.map(p=>p.y))-BOX.up-24,maxY:Math.max(...points.map(p=>p.y))+BOX.down};
+      // Captions can reach past the plate (longer in English), so use the rendered extent when the plate exists.
+      const reach=keys.map(key=>{
+        const point=positions.get(key),stage=nodeElements.get(key),name=stage?.querySelector('.stage-name');
+        if(!point||!name||!name.offsetWidth)return {right:point?point.x+BOX.right:-Infinity,bottom:point?point.y+BOX.down:-Infinity};
+        const left=point.x-stage.offsetWidth/2,top=point.y-stage.offsetHeight/2;
+        return {right:Math.max(point.x+BOX.right,left+name.offsetLeft+name.offsetWidth+8),bottom:Math.max(point.y+BOX.down,top+name.offsetTop+name.offsetHeight+16)};
+      });
+      return {minX:Math.min(...points.map(p=>p.x))-BOX.left,maxX:Math.max(...reach.map(r=>r.right)),minY:Math.min(...points.map(p=>p.y))-BOX.up-24,maxY:Math.max(...reach.map(r=>r.bottom))};
     }
     function fitZoom(keys){const bounds=boundsOf(keys),view=safeRect();return bounds?Math.min(view.width/(bounds.maxX-bounds.minX),view.height/(bounds.maxY-bounds.minY)):1;}
     function frame(keys,{maxZoom=1,minZoom=ZOOM.min,animate=true}={}){
@@ -857,6 +866,27 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
       const [x1,y1]=points[best-1],[x2,y2]=points[best];
       return {x:(x1+x2)/2,y:(y1+y2)/2,angle:Math.atan2(y2-y1,x2-x1)*180/Math.PI};
     }
+    // Captions vary with language and zoom, so direction marks move off any caption they would land on once the plates are in the DOM.
+    function placeArrows(){
+      if(!arrowRoutes.length)return;
+      const plane=$('map-plane').getBoundingClientRect(),z=camera.z||1,boxes=[];
+      for(const node of document.querySelectorAll('#stages .stage-name,#stages .stage-top')){
+        const r=node.getBoundingClientRect();
+        if(r.width&&r.height)boxes.push({l:(r.left-plane.left)/z-10,t:(r.top-plane.top)/z-12,r:(r.right-plane.left)/z+10,b:(r.bottom-plane.top)/z+12});
+      }
+      const clear=(x,y)=>!boxes.some(box=>x>box.l&&x<box.r&&y>box.t&&y<box.b);
+      for(const {arrow,points} of arrowRoutes){
+        const segments=points.slice(1).map((point,index)=>[points[index],point]).sort((a,b)=>Math.hypot(b[1][0]-b[0][0],b[1][1]-b[0][1])-Math.hypot(a[1][0]-a[0][0],a[1][1]-a[0][1]));
+        let spot=null;
+        for(const [[x1,y1],[x2,y2]] of segments){
+          if(Math.hypot(x2-x1,y2-y1)<36)continue;
+          for(const t of [.5,.35,.65,.2,.8]){const x=x1+(x2-x1)*t,y=y1+(y2-y1)*t;if(clear(x,y)){spot={x,y,angle:Math.atan2(y2-y1,x2-x1)*180/Math.PI};break;}}
+          if(spot)break;
+        }
+        spot??=arrowAnchor(points);
+        arrow.setAttribute('transform',`translate(${Math.round(spot.x)} ${Math.round(spot.y)}) rotate(${Math.round(spot.angle)})`);
+      }
+    }
     function renderRoutes(){
       const strength={dependency:3,sequence:2,attachment:1},strongest=new Map();
       for(const edge of mission.edges){
@@ -864,7 +894,7 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
         const kind=strength[edge.kind]?edge.kind:'dependency',pair=JSON.stringify([edge.from,edge.to]);
         if(!strongest.has(pair)||strength[kind]>strength[strongest.get(pair).kind])strongest.set(pair,{from:edge.from,to:edge.to,kind});
       }
-      const lanes={above:0,below:0},fragment=document.createDocumentFragment();
+      const lanes={above:0,below:0},fragment=document.createDocumentFragment();arrowRoutes=[];
       for(const edge of [...strongest.values()].sort((a,b)=>strength[a.kind]-strength[b.kind])){
         const a=positions.get(edge.from),b=positions.get(edge.to);
         let points=elbow(a,b);
@@ -878,8 +908,8 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
         if(edge.kind!=='attachment')group.append(svg('path',{class:'route-halo',d}));
         group.append(svg('path',{class:'route-path '+edge.kind+tone,d}));
         if(edge.kind!=='attachment'){
-          const middle=arrowAnchor(points);
-          group.append(svg('path',{class:'route-arrow'+tone,d:'M-6 -7 7 0-6 7Z',transform:`translate(${Math.round(middle.x)} ${Math.round(middle.y)}) rotate(${Math.round(middle.angle)})`}));
+          const middle=arrowAnchor(points),arrow=svg('path',{class:'route-arrow'+tone,d:'M-6 -7 7 0-6 7Z',transform:`translate(${Math.round(middle.x)} ${Math.round(middle.y)}) rotate(${Math.round(middle.angle)})`});
+          group.append(arrow);arrowRoutes.push({arrow,points});
         }
         fragment.append(group);
       }
@@ -921,7 +951,7 @@ radial-gradient(130% 100% at 50% 48%,transparent 42%,rgba(7,9,11,.62) 100%)}
       nodeElements.clear();
       $('stages').replaceChildren(...visibleNodes().map(createStage));
       for(const key of changed)nodeElements.get(key)?.classList.add('updated');
-      updateSelection();applyFilter();
+      updateSelection();applyFilter();placeArrows();
       if(focusedKey)nodeElements.get(focusedKey)?.focus({preventScroll:true});
     }
     function updateSelection(){

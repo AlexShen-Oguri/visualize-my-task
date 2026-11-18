@@ -16,9 +16,9 @@ See what is in progress, what comes next, and what still needs acceptance. Keep 
 
 [Download](https://github.com/AlexShen-Oguri/visualize-my-task/releases/latest) · [Quick start](#quick-start) · [Screenshots](#screenshots) · [Example cases](visualize-my-task/examples/cases/README.md)
 
-![An actual task map showing three development rounds, the current added task, and parallel branches](docs/images/overview.png)
+![An actual task map showing three development rounds, the current added task, and parallel branches](docs/images/en/overview.png)
 
-*Actual browser screenshot from v1.1.0 using a bundled synthetic example. Both added tasks sit between the first and second rounds; only required work blocks the second round. The screenshots on this page show the Chinese interface.*
+*Actual browser screenshot of the English interface, using an English translation of a bundled synthetic example. Both added tasks sit between the first and second rounds; only required work blocks the second round.*
 
 ## Keep up as the plan grows
 
@@ -40,11 +40,11 @@ When the records do not establish a relationship, the board keeps it unknown or 
 
 ## Screenshots
 
-All five screenshots on this page are actual browser captures of v1.1.0, using bundled synthetic cases. They contain no private project records. Click an image to open the full-size version.
+All five screenshots on this page are actual browser captures of the English interface (`--lang en`) from the current `main` branch. The bundled synthetic cases are written in Chinese, so these captures use English translations of the same cases, with the same task IDs, states, and relations. They contain no private project records. Click an image to open the full-size version.
 
 ### Implemented and tested can still mean awaiting acceptance
 
-![Four independent task states: development done, automated verification passed, user acceptance pending, and not yet delivered](docs/images/task-details.png)
+![Four independent task states: development done, automated verification passed, user acceptance pending, and not yet delivered](docs/images/en/task-details.png)
 
 `P-01` is implemented and has passed automated verification. User acceptance and delivery remain separate records. Passing tests or pushing code does not automatically mark the task as accepted.
 
@@ -52,19 +52,19 @@ The four marks at the top right of each task plate stand for development, verifi
 
 ### Release work retains its prerequisites across maps
 
-![A release task showing prerequisites from development and security review, plus its candidate version scope](docs/images/workstreams.png)
+![A release task showing prerequisites from development and security review, plus its candidate version scope](docs/images/en/workstreams.png)
 
 `REL-01` waits for both a feature task and a security review. Those dependencies stay visible in the release map; select a prerequisite to open its map. `v0.6.0-rc1` is the example's candidate version.
 
 ### Start with reference material when there is no plan yet
 
-![A project with specifications only, showing an empty task state and the source reference panel](docs/images/spec-reference.png)
+![A project with specifications only, showing an empty task state and the source reference panel](docs/images/en/spec-reference.png)
 
 If a project only has specifications, you can read its original requirements and acceptance criteria. Checked specification items do not become completed tasks. Opening the board for an existing project does not automatically create a plan.
 
 ### Check the current task on your phone
 
-<img src="docs/images/mobile.png" alt="Actual browser capture at a 390-pixel mobile viewport, showing the current added task and its independent states" width="320">
+<img src="docs/images/en/mobile.png" alt="Actual browser capture at a 390-pixel mobile viewport, showing the current added task and its independent states" width="320">
 
 The mobile layout keeps map browsing and task details available, including the current task, its sources, and its states. This capture uses a 390-pixel browser viewport.
 
@@ -153,7 +153,7 @@ The interface can follow the project's Chinese or English language. Task names, 
 
 ## Verification record
 
-The local `v1.2.0` checks ran on macOS with Node.js 24.21.0. The table retains the version for each result. The 165 HTTP, input boundary, and browser security checks are from `v1.0.0`. The screenshots remain from `v1.1.0`, covering five display scenarios and desktop and mobile viewports.
+The local `v1.2.0` checks ran on macOS with Node.js 24.21.0. The table retains the version for each result. The 165 HTTP, input boundary, and browser security checks are from `v1.0.0`. The screenshots were retaken from the `main` branch after `v1.2.0`, covering five display scenarios and desktop and mobile viewports.
 
 | Check | Result | Run against |
 | --- | --- | --- |
